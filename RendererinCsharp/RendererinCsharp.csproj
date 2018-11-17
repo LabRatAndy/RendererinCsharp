@@ -47,6 +47,7 @@
     <Compile Include="RenderWindow.cs" />
     <Compile Include="Shader.cs" />
     <Compile Include="Testure.cs" />
+    <Compile Include="VBO.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="OpenTK.dll.config" />
