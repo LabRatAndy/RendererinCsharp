@@ -8,7 +8,7 @@ namespace RendererinCsharp
         private int handle;
         private int vertexshader;
         private int fragmentshader;
-        Shader(string vertexshaderfile, string fragmentshaderfile)
+        public Shader(string vertexshaderfile, string fragmentshaderfile)
         {
             handle = GL.CreateProgram();
             LoadShader(vertexshaderfile, ShaderType.VertexShader);
