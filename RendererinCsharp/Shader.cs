@@ -3,7 +3,7 @@ using OpenTK.Graphics.OpenGL4;
 
 namespace RendererinCsharp
 {
-    class Shader : IDisposable
+    public class Shader : IDisposable
     {
         private int handle;
         private int vertexshader;
