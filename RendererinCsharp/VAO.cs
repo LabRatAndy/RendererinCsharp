@@ -11,7 +11,7 @@ namespace RendererinCsharp
         private ElementBufferObject ibo = null;
         private int attributecount = 0;
 
-        VertexArrayObject()
+        public VertexArrayObject()
         {
             GL.GenVertexArrays(1, out handle);
         }
