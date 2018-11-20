@@ -9,7 +9,7 @@ namespace RendererinCsharp
         private float[] vertexData = null;
         private int dataSize;
 
-        VertexBufferObject(float[] vertexdata, int size)
+        public VertexBufferObject(float[] vertexdata, int size)
         {
             GL.GenBuffers(1, out handle);
             this.vertexData = vertexdata;
