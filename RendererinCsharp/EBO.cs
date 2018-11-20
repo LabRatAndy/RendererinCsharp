@@ -7,7 +7,7 @@ namespace RendererinCsharp
         private int handle;
         private int[] ibo = null;
 
-        ElementBufferObject(int[] ibo)
+        public ElementBufferObject(int[] ibo)
         {
             GL.GenBuffers(1, out handle);
             this.ibo = ibo;
