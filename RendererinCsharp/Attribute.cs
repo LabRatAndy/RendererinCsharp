@@ -12,7 +12,7 @@ namespace RendererinCsharp
         private VertexAttribPointerType type;
         private bool normalised;
         
-        Attribute(string Name, int Size, int Offset, int Stride, int Index, VertexAttribPointerType Type, bool Normalised)
+        public Attribute(string Name, int Size, int Offset, int Stride, int Index, VertexAttribPointerType Type, bool Normalised)
         {
             name = Name;
             size = Size;
