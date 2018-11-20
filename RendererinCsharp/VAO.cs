@@ -7,7 +7,7 @@ namespace RendererinCsharp
     {
         private int handle;
         private Attribute[] attributeList;
-        private VertexArrayObject vbo = null;
+        private VertexBufferObject vbo = null;
         private ElementBufferObject ibo = null;
         private int attributecount = 0;
 
@@ -24,7 +24,7 @@ namespace RendererinCsharp
             attributeList[index] = attribute;
             attributecount++;
         }
-        public void SetVBO(VertexArrayObject VBO)
+        public void SetVBO(VertexBufferObject VBO)
         {
             if (vbo == null) vbo = VBO;
             else
