@@ -10,7 +10,7 @@ namespace RendererinCsharp
         private int handle;
         private bool cubemapped;
 
-        Texture(string filename)
+        public Texture(string filename)
         {
             cubemapped = false;
             GL.GenTextures(1, out handle);
@@ -29,7 +29,7 @@ namespace RendererinCsharp
             image.Dispose();
             image = null;
         }
-        Texture(string top, string bottom, string left, string right, string front, string back)
+        public Texture(string top, string bottom, string left, string right, string front, string back)
         {
             cubemapped = true;
             GL.GenTextures(1, out handle);
