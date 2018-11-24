@@ -51,7 +51,7 @@ namespace RendererinCsharp
             //get attributes and uniforms
             attribute_cube = cubeshader.GetAttibuteHandle("position");
             attribute_cube_texcoords = cubeshader.GetAttibuteHandle("texcoords");
-            attribute_skybox = cubeshader.GetAttibuteHandle("position");
+            attribute_skybox = skyboxShader.GetAttibuteHandle("position");
             uniform_cubemodel = cubeshader.GetUniformHandle("model");
             uniform_cubeview = cubeshader.GetUniformHandle("view");
             uniform_cube_projection = cubeshader.GetUniformHandle("projection");
