@@ -121,6 +121,34 @@ namespace RendererinCsharp
         protected override void OnRenderFrame(FrameEventArgs e)
         {
             base.OnRenderFrame(e);
+            //clear scene
+            GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
+            GL.Enable(EnableCap.DepthTest);
+            //draw cube
+            GL.DepthFunc(DepthFunction.Less);
+            cubeshader.Use();
+            cubeTexture.Activate(TextureUnit.Texture0);
+            cubeTexture.Bind();
+            GL.Uniform1(uniform_cubeTexture, 0);
+            GL.UniformMatrix4(uniform_cubemodel, false, ref model);
+            GL.UniformMatrix4(uniform_cubeview, false, ref view);
+            GL.UniformMatrix4(uniform_cube_projection, false, ref projection);
+            cubeVAO.Bind();
+            cubeVAO.Draw();
+            cubeVAO.UnBind();
+            cubeTexture.Unbind();
+            //draw skybox
+            GL.DepthFunc(DepthFunction.Lequal);
+            skyboxShader.Use();
+            skyboxTexture.Activate(TextureUnit.Texture1);
+            skyboxTexture.Bind();
+            GL.Uniform1(uniform_skyboxtexture, 1);
+            GL.UniformMatrix4(uniform_skyboxview, false, ref skyboxview);
+            GL.UniformMatrix4(uniform_skyboxprojection, false, ref projection);
+            skyboxVAO.Bind();
+            skyboxVAO.Draw(0, 36);
+            skyboxVAO.UnBind();
+            skyboxTexture.Unbind();
         }
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
