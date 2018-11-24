@@ -149,6 +149,8 @@ namespace RendererinCsharp
             skyboxVAO.Draw(0, 36);
             skyboxVAO.UnBind();
             skyboxTexture.Unbind();
+            //swap buffers
+            SwapBuffers();
         }
         protected override void OnUpdateFrame(FrameEventArgs e)
         {
@@ -160,6 +162,16 @@ namespace RendererinCsharp
         }
         protected override void Dispose(bool manual)
         {
+            // get rid of all the resources correctly
+            cubeIBO.Dispose();
+            cubeVAO.Dispose();
+            cubeVBO.Dispose();
+            cubeTexture.Dispose();
+            cubeshader.Dispose();
+            skyboxVAO.Dispose();
+            skyboxVBO.Dispose();
+            skyboxTexture.Dispose();
+            skyboxTexture.Dispose();
             base.Dispose(manual);
         }
         private void CreateCube(float size, out float[] cube)
@@ -246,8 +258,13 @@ namespace RendererinCsharp
                 size, -size, size
             };
         }
-
-
-
+        protected override void OnKeyPress(KeyPressEventArgs e)
+        {
+            base.OnKeyPress(e);
+            if(e.KeyChar == 'q')
+            {
+                Exit();
+            }
+        }
     }
 }
