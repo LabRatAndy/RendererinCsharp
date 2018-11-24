@@ -6,7 +6,8 @@ namespace RendererinCsharp
     {
         static void Main(string[] args)
         {
-
+            RenderWindow window = new RenderWindow();
+            window.Run();
         }
     }
 }
