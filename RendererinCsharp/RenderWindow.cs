@@ -156,7 +156,8 @@ namespace RendererinCsharp
         {
             base.OnUpdateFrame(e);
             view = Matrix4.LookAt(camrapos, lookatpos, new Vector3(0.0f, 1.0f, 0.0f));
-            projection = Matrix4.CreatePerspectiveFieldOfView(90.0f, (800.0f / 600.0f), 0.1f, 100.0f);
+            float aspectratio = (float)Width / Height;
+            projection = Matrix4.CreatePerspectiveFieldOfView(90.0f, aspectratio, 0.1f, 100.0f);
             skyboxview = Matrix4.LookAt(camrapos, lookatpos, new Vector3(0.0f, 1.0f, 0.0f));
             skyboxview = skyboxview.ClearTranslation();
         }
