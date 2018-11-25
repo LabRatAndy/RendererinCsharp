@@ -14,6 +14,7 @@ namespace RendererinCsharp
         public VertexArrayObject()
         {
             GL.GenVertexArrays(1, out handle);
+            attributeList = new Attribute[10];
         }
         public void AddAttribute(int index, Attribute attribute)
         {
@@ -21,6 +22,10 @@ namespace RendererinCsharp
             if (index < 0) throw new IndexOutOfRangeException("cannot have an attribute with a negative index");
             if (index != attributecount) throw new IndexOutOfRangeException("Index not the next available one");
 #endif
+            if (index > 9)
+            {
+                Array.Resize<Attribute>(ref attributeList, attributecount++);
+            }
             attributeList[index] = attribute;
             attributecount++;
         }
