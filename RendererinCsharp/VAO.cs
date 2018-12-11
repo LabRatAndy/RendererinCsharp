@@ -78,16 +78,16 @@ namespace RendererinCsharp
         }
         public void Dispose()
         {
-            ibo.Dispose();
-            vbo.Dispose();
+            if (ibo != null) ibo.Dispose();
+            if (vbo != null) vbo.Dispose();
             attributeList = null;
             GL.DeleteVertexArray(handle);
             GC.SuppressFinalize(this);
         }
         ~VertexArrayObject()
         {
-            ibo.Dispose();
-            vbo.Dispose();
+            if (ibo != null) ibo.Dispose();
+            if (vbo != null) vbo.Dispose();
             attributeList = null;
             GL.DeleteVertexArray(handle);
         }
