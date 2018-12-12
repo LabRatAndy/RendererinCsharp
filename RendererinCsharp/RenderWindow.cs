@@ -91,7 +91,7 @@ namespace RendererinCsharp
             skyboxVAO.Bind();
             skyboxVBO.BufferData(BufferUsageHint.StaticDraw);
             skyboxVAO.SetVBO(skyboxVBO);
-            skyboxPosition = new Attribute("position", 3 * sizeof(float), 0, 3, 0, VertexAttribPointerType.Float, false);
+            skyboxPosition = new Attribute("position", 3, 0, 3*sizeof(float), 0, VertexAttribPointerType.Float, false);
             skyboxVAO.AddAttribute(0, skyboxPosition);
             skyboxVAO.SetAttributes();
             skyboxVAO.UnBind();
@@ -114,9 +114,10 @@ namespace RendererinCsharp
             skyboxTexture.SetTexParameterI(TextureParameterName.TextureWrapS, All.ClampToEdge);
             skyboxTexture.SetTexParameterI(TextureParameterName.TextureWrapT, All.ClampToEdge);
             //viewpoint
-            camrapos = new Vector3(-7.0f, 7.0f, -7.0f);
+            camrapos = new Vector3(-17.0f, 17.0f, -17.0f);
             lookatpos = new Vector3(0.0f, 0.0f, 0.0f);
             model = Matrix4.Identity;
+            GL.ClearColor(OpenTK.Graphics.Color4.Green);
         }
         protected override void OnRenderFrame(FrameEventArgs e)
         {
@@ -125,20 +126,20 @@ namespace RendererinCsharp
             GL.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
             GL.Enable(EnableCap.DepthTest);
             //draw cube
-            GL.DepthFunc(DepthFunction.Less);
-            cubeshader.Use();
-            cubeTexture.Activate(TextureUnit.Texture0);
-            cubeTexture.Bind();
-            GL.Uniform1(uniform_cubeTexture, 0);
-            GL.UniformMatrix4(uniform_cubemodel, false, ref model);
-            GL.UniformMatrix4(uniform_cubeview, false, ref view);
-            GL.UniformMatrix4(uniform_cube_projection, false, ref projection);
-            cubeVAO.Bind();
-            cubeVAO.Draw();
-            cubeVAO.UnBind();
-            cubeTexture.Unbind();
+             GL.DepthFunc(DepthFunction.Less);
+             cubeshader.Use();
+             cubeTexture.Activate(TextureUnit.Texture0);
+             cubeTexture.Bind();
+             GL.Uniform1(uniform_cubeTexture, 0);
+             GL.UniformMatrix4(uniform_cubemodel, false, ref model);
+             GL.UniformMatrix4(uniform_cubeview, false, ref view);
+             GL.UniformMatrix4(uniform_cube_projection, false, ref projection);
+             cubeVAO.Bind();
+             cubeVAO.Draw();
+             cubeVAO.UnBind();
+             cubeTexture.Unbind();
             //draw skybox
-            GL.DepthFunc(DepthFunction.Lequal);
+           GL.DepthFunc(DepthFunction.Lequal);
             skyboxShader.Use();
             skyboxTexture.Activate(TextureUnit.Texture1);
             skyboxTexture.Bind();
@@ -173,7 +174,7 @@ namespace RendererinCsharp
             skyboxVAO.Dispose();
             skyboxVBO.Dispose();
             skyboxTexture.Dispose();
-            skyboxTexture.Dispose();
+            skyboxShader.Dispose();
             base.Dispose(manual);
         }
         private void CreateCube(float size, out float[] cube)
@@ -267,6 +268,11 @@ namespace RendererinCsharp
             {
                 Exit();
             }
+        }
+        protected override void OnUnload(EventArgs e)
+        {
+            Dispose(true);
+            base.OnUnload(e);
         }
     }
 }
